@@ -1,0 +1,48 @@
+name: Build Windows Installer
+
+on:
+  push:
+    branches: [ "main" ] # 只有 push 到 main 分支才触发
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Build EXE with PyInstaller
+      run: |
+        # --noconsole: 不显示控制台窗口
+        # --onefile: 打包成单个文件
+        # --add-data: 将文件夹打包进去。Windows 下格式为 "源目录;目标目录"
+        pyinstaller --noconsole --onefile `
+        --add-data "modules;modules" `
+        --add-data "core;core" `
+        --add-data "styles;styles" `
+        --name "DigitalCultureSystem" `
+        main.py
+
+    - name: Create Installer with Inno Setup
+      # 使用 GitHub Actions 自带的 Inno Setup 工具
+      run: |
+        # 这里需要一个 .iss 脚本，如果没有，可以先只发布 EXE
+        iscc /Q installer_script.iss
+      continue-on-error: true # 如果你还没写 .iss，先让流程跑通 EXE
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: Windows-Executable
+        path: dist/DigitalCultureSystem.exe

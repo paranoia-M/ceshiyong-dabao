@@ -1,0 +1,94 @@
+/* 整体大背景及阴影效果 */
+#MainBackground {
+    background-color: #ffffff;
+    border-radius: 12px;
+}
+
+/* 左侧面板：深色科技渐变蓝 */
+#LeftPanel {
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #1a2a6c, stop:0.5 #b21f1f, stop:1 #fdbb2d); /* 这种渐变很酷 */
+    background-color: #0f172a; /* 或者深空蓝 */
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+
+#BigLogo {
+    color: #38bdf8;
+    font-size: 80px;
+    font-family: "Segoe UI Symbol";
+    margin-left: 40px;
+}
+
+#SystemName {
+    color: white;
+    font-size: 24px;
+    font-weight: 800;
+    margin-left: 40px;
+}
+
+#TechData {
+    color: #38bdf8;
+    font-family: "Consolas";
+    font-size: 10px;
+    margin-left: 40px;
+    line-height: 150%;
+}
+
+/* 右侧面板 */
+#RightPanel {
+    background-color: #ffffff;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+#LoginTitle {
+    font-size: 22px;
+    font-weight: bold;
+    color: #1e293b;
+}
+
+QLineEdit {
+    border: none;
+    border-bottom: 2px solid #e2e8f0;
+    padding: 10px 5px;
+    font-size: 14px;
+    color: #1e293b;
+    background: transparent;
+}
+
+QLineEdit:focus {
+    border-bottom: 2px solid #38bdf8;
+}
+
+#LoginButton {
+    background-color: #0f172a;
+    color: white;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 12px;
+}
+
+#LoginButton:hover {
+    background-color: #1e293b;
+}
+
+#LoginButton:pressed {
+    background-color: #334155;
+}
+
+#StatusMsg {
+    font-size: 11px;
+    color: #64748b;
+    margin-top: 5px;
+}
+
+#CloseBtn {
+    border: none;
+    color: #94a3b8;
+    font-size: 20px;
+}
+
+#CloseBtn:hover {
+    color: #e11d48;
+}
